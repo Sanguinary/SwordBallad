@@ -47,6 +47,29 @@ public class GameView extends SurfaceView implements Runnable {
         startGame();
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent){
+        switch(motionEvent.getAction() & motionEvent.ACTION_MASK){
+            case MotionEvent.ACTION_UP:
+                //switch back to idle when you lift up
+                player.idle();
+                break;
+            case MotionEvent.ACTION_DOWN:
+                //Check enemy kills
+                checkHits(motionEvent);
+
+                //make the player switch images
+                if(motionEvent.getX() > screenX / 2){
+                    player.attackRight();
+                }
+                else{
+                    player.attackLeft();
+                }
+                break;
+        }
+        return true;
+    }
+
     private void startGame(){
         //Initialize game objects
         player = new Player(context, screenX, screenY);
@@ -63,6 +86,14 @@ public class GameView extends SurfaceView implements Runnable {
             update();
             draw();
             control();
+        }
+    }
+
+    public void checkHits(MotionEvent motionEvent){
+        //kill enemies that are intersected
+        for(int i = 0; i < NUM_APPLES; i++){
+            if(apples[i].hitBox.contains((int)motionEvent.getX(), (int)motionEvent.getY()))
+                apples[i].die();
         }
     }
 
@@ -84,6 +115,13 @@ public class GameView extends SurfaceView implements Runnable {
 
             //Draw player
             canvas.drawBitmap(player.getCurrentImage(), player.getX(), player.getY(), paint);
+
+
+            //Draw hitboxes
+            /*paint.setColor(Color.argb(255, 255, 255, 255));
+            for(int i = 0; i < NUM_APPLES; i++){
+                canvas.drawRect(apples[i].getHitBox().left, apples[i].getHitBox().top, apples[i].getHitBox().right, apples[i].getHitBox().bottom, paint);
+            }*/
 
             //Draw enemies
             for(int i = 0; i < NUM_APPLES; i++){

@@ -15,6 +15,7 @@ public class EnemyApple extends Enemy {
         super(context, screenX, screenY);
 
         setImages(context);
+        scaleBitmap(screenY);
 
         revive();
 

@@ -16,7 +16,7 @@ public class Player {
     private final int ATTACK_LEFT = 3;
     private int state;
 
-    private int x, y, screenX, screenY;
+    private int startX, startY, x, y, screenX, screenY;
 
 
     public Player(Context context, int screenX, int screenY){
@@ -33,8 +33,23 @@ public class Player {
 
         currentImage = idleImage;
 
-        x = (screenX / 2) - idleImage.getWidth() / 2;
-        y = screenY - idleImage.getHeight() - (screenY / 10);
+        startX = x = (screenX / 2) - idleImage.getWidth() / 4;
+        startY = y = screenY - idleImage.getHeight() - (screenY / 20);
+    }
+
+    public void idle(){
+        currentImage = idleImage;
+        x = startX;
+    }
+
+    public void attackRight(){
+        currentImage = attackRightImage;
+        x = startX;
+    }
+
+    public void attackLeft(){
+        currentImage = attackLeftImage;
+        x = startX - currentImage.getWidth() / 2;
     }
 
     //Getters

@@ -3,13 +3,15 @@ package com.evanalbitz.balladofthesworddancer;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
 
 import java.util.Random;
 
 /**
  * Created by Evan on 11/15/2015.
  */
-public class Enemy {
+public class Enemy{
     public Bitmap aliveImage;
     public Bitmap deadImage;
     public Bitmap currentImage;
@@ -17,6 +19,7 @@ public class Enemy {
     public int MAX_Y, MIN_Y;
 
     public final int MAX_SPEED = 40;
+
     public final int MIN_SPEED = 20;
     public int speed;
     public int lane;
@@ -47,8 +50,8 @@ public class Enemy {
         //Move hitbox
         hitBox.left = x;
         hitBox.top = y;
-        hitBox.right = currentImage.getWidth();
-        hitBox.right = currentImage.getHeight();
+        hitBox.right = x + currentImage.getWidth();
+        hitBox.bottom = y + currentImage.getHeight();
     }
 
     public void setLane(){
@@ -57,7 +60,7 @@ public class Enemy {
 
         switch(lane){
             case 0:
-                x = aliveImage.getWidth();
+                x = 0;
                 break;
 
             case 1:
@@ -65,7 +68,7 @@ public class Enemy {
                 break;
 
             case 2:
-                x = (screenX / 2) + aliveImage.getWidth();
+                x = (screenX / 2) + aliveImage.getWidth() / 2;
                 break;
 
             case 3:

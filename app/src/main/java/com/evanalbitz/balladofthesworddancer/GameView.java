@@ -102,6 +102,10 @@ public class GameView extends SurfaceView implements Runnable {
         for(int i = 0; i < NUM_APPLES; i++){
             apples[i].update();
         }
+
+        //countdown the player timer and reset character
+        player.countDown();
+        player.idle();
     }
 
     private void draw(){

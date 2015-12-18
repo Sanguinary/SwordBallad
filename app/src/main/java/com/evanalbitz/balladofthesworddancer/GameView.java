@@ -18,6 +18,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Random;
 
 /**
  * Created by Evan on 11/16/2015.
@@ -83,7 +84,14 @@ public class GameView extends SurfaceView implements Runnable {
 
         mDataStore = DataStore.get(context);
 
-        mSpawnPattern = new EnemySpawnPattern("test_level", context);
+        // Pick a random level
+        // TODO: Make a level select screen
+        //--------------
+        Random rand = new Random();
+        int r = (rand.nextInt() % 5) + 1;
+        //--------------
+
+        mSpawnPattern = new EnemySpawnPattern("level_1_data", context);
 
         curGameState = GameState.START;
         startGame();

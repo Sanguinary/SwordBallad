@@ -27,6 +27,7 @@ public class Enemy{
     public boolean alive;
     public int x, y, screenX, screenY;
     public Random rand;
+    public String name;
 
     public Rect hitBox;
 

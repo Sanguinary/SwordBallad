@@ -4,19 +4,18 @@ import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 
-import java.util.Random;
-
 /**
- * Created by Evan on 11/15/2015.
+ * Created by Evan on 12/17/2015.
  */
-public class EnemyApple extends Enemy {
+public class EnemySpikeBall extends Enemy {
 
-    public EnemyApple(Context context, int screenX, int screenY) {
+    public EnemySpikeBall(Context context, int screenX, int screenY) {
         super(context, screenX, screenY);
 
         setImages(context);
         scaleBitmap(screenY);
-        name = "apple";
+
+        name = "spikeBall";
 
         revive();
 
@@ -24,11 +23,15 @@ public class EnemyApple extends Enemy {
     }
 
     public void setImages(Context context){
-        aliveImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.applealive);
-        deadImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.appledead);
+        aliveImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.spike_ball);
+        deadImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.spike_ball);
         currentImage = aliveImage;
         hitBox = new Rect(x, y, currentImage.getWidth(), currentImage.getHeight());
         MAX_Y = screenY + currentImage.getHeight();
         MIN_Y = -currentImage.getHeight();
+    }
+
+    public void die(){
+        alive = true;
     }
 }

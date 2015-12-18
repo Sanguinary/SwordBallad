@@ -29,7 +29,6 @@ public class Start extends AppCompatActivity {
     public void startGame(View view){
         Intent i = new Intent(this, GameActivity.class);
         startActivity(i);
-        finish();
     }
 
     @Override

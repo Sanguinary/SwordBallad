@@ -59,6 +59,24 @@ public class EnemySpawnPattern {
                         break;
                     case "log":
                         break;
+                    case "bat":
+                        mEnemiesToSpawn.add(new EnemyBat(   ctx,
+                                                            deviceSize.x,
+                                                            deviceSize.y,
+                                                            Integer.parseInt(enemy.getString("lane"))));
+                        break;
+                    case "slime":
+                        mEnemiesToSpawn.add(new EnemySlime( ctx,
+                                                            deviceSize.x,
+                                                            deviceSize.y,
+                                                            Integer.parseInt(enemy.getString("lane")),
+                                                            true));
+                        break;
+                    case "spikeBall":
+                        mEnemiesToSpawn.add(new EnemySpikeBall( ctx,
+                                                                deviceSize.x,
+                                                                deviceSize.y,
+                                                                Integer.parseInt(enemy.getString("lane"))));
                     default:
                         break;
                 }

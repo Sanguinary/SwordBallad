@@ -10,16 +10,16 @@ import java.lang.Math;
  */
 public class EnemyBat extends Enemy{
 
-    public EnemyBat(Context context, int screenX, int screenY){
+    public EnemyBat(Context context, int screenX, int screenY, int lane){
         super(context, screenX, screenY);
 
         setImages(context);
         scaleBitmap(screenY);
-        name = "bat";
+        type = "bat";
 
         revive();
 
-        setLane();
+        setLane(lane);
     }
 
     public void setImages(Context context){
@@ -31,15 +31,15 @@ public class EnemyBat extends Enemy{
         MIN_Y = -currentImage.getHeight();
     }
 
+    @Override
     public void update(){
         //Move the enemy
         y += speed;
-        x += (float)Math.asin(screenX * x);
+        if(alive)
+            x = (int)(Math.sin(screenX * lifeSpan) * 200);
 
         if(y > MAX_Y){
-            y = MIN_Y;
-            revive();
-            setLane();
+
         }
 
         //Move hitbox
@@ -47,5 +47,7 @@ public class EnemyBat extends Enemy{
         hitBox.top = y;
         hitBox.right = x + currentImage.getWidth();
         hitBox.bottom = y + currentImage.getHeight();
+
+        lifeSpan++;
     }
 }

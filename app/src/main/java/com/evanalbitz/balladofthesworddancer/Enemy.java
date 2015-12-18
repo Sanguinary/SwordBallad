@@ -19,21 +19,29 @@ public class Enemy{
 
     public int MAX_Y, MIN_Y;
 
-    public final int MAX_SPEED = 40;
+    public final int MAX_SPEED = 30;
 
-    public final int MIN_SPEED = 20;
+    public final int MIN_SPEED = 10;
     public int speed;
     public int lane;
     public final int MAXLANES = 4;
     public boolean alive;
     public int x, y, screenX, screenY;
     public Random rand;
-    public String name;
+    public String type;
+    int lifeSpan;
+    boolean offScreen;
 
     public Rect hitBox;
 
     public Enemy(Context context, int screenX, int screenY){
         rand = new Random();
+
+        lifeSpan = 0;
+
+        offScreen = false;
+
+        y = -screenY/10;
 
         this.screenX = screenX;
         this.screenY = screenY;
@@ -45,6 +53,7 @@ public class Enemy{
 
         if(y > MAX_Y && alive){
             Log.d("SwordBallad", "Missed enemy");
+            offScreen = true;
         }
 
         //Move hitbox
@@ -87,10 +96,10 @@ public class Enemy{
         speed = (MIN_SPEED + MAX_SPEED)/2;
     }
 
-    public void scaleBitmap(int y){
-        if(y < 1000)
+    public void scaleBitmap(int size){
+        if(size < 700)
             currentImage = Bitmap.createScaledBitmap(currentImage, currentImage.getWidth() / 3, currentImage.getHeight() / 3, false);
-        if(y < 1000)
+        else if(size < 1000)
             currentImage = Bitmap.createScaledBitmap(currentImage, currentImage.getWidth() / 2, currentImage.getHeight() / 2, false);
     }
 
@@ -109,4 +118,7 @@ public class Enemy{
 
     public boolean getAlive() {return alive;}
 
+    public String getType() {return type;}
+
+    public boolean isOffScreen() {return offScreen;}
 }

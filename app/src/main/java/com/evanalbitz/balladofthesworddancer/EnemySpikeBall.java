@@ -9,17 +9,17 @@ import android.graphics.Rect;
  */
 public class EnemySpikeBall extends Enemy {
 
-    public EnemySpikeBall(Context context, int screenX, int screenY) {
+    public EnemySpikeBall(Context context, int screenX, int screenY, int lane) {
         super(context, screenX, screenY);
 
         setImages(context);
         scaleBitmap(screenY);
 
-        name = "spikeBall";
+        type = "spikeBall";
 
         revive();
 
-        setLane();
+        setLane(lane);
     }
 
     public void setImages(Context context){

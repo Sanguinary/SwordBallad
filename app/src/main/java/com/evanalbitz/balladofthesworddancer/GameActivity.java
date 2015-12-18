@@ -57,12 +57,12 @@ public class GameActivity extends AppCompatActivity {
         JSONArray array = new JSONArray();
         try{
             JSONObject enemy1 = new JSONObject();
-            enemy1.put("enemyType", "apple");
+            enemy1.put("enemyType", "slime");
             enemy1.put("spawnTime", 0);
             enemy1.put("lane", 1);
 
             JSONObject enemy2 = new JSONObject();
-            enemy2.put("enemyType", "apple");
+            enemy2.put("enemyType", "spikeBall");
             enemy2.put("spawnTime", 100);
             enemy2.put("lane", 1);
 
@@ -115,5 +115,85 @@ public class GameActivity extends AppCompatActivity {
         }
 
         mDataStore.setJSONArrayInStorage("test_level", array);
+
+        initLevelOne();
+        initLevelTwo();
+        initLevelThree();
+        initLevelFour();
+        initLevelFive();
     }
+
+    private void initLevelOne(){
+        JSONArray array = new JSONArray();
+        try{
+            JSONObject enemy1 = new JSONObject();
+            enemy1.put("enemyType", "apple");
+            enemy1.put("spawnTime", 0);
+            enemy1.put("lane", 1);
+
+            }catch(Exception e){
+                Log.d("SwordBallad", "initLevelOne(): " + e.getMessage());
+            }
+
+            mDataStore.setJSONArrayInStorage("level_1_data", array);
+        }
+
+    private void initLevelTwo(){
+        JSONArray array = new JSONArray();
+        try{
+            JSONObject enemy1 = new JSONObject();
+            enemy1.put("enemyType", "apple");
+            enemy1.put("spawnTime", 0);
+            enemy1.put("lane", 1);
+
+            }catch(Exception e){
+                Log.d("SwordBallad", "initLevelTwo(): " + e.getMessage());
+            }
+
+            mDataStore.setJSONArrayInStorage("level_2_data", array);
+        }
+
+    private void initLevelThree(){
+        JSONArray array = new JSONArray();
+        try{
+            JSONObject enemy1 = new JSONObject();
+            enemy1.put("enemyType", "apple");
+            enemy1.put("spawnTime", 0);
+            enemy1.put("lane", 1);
+            }catch(Exception e){
+                Log.d("SwordBallad", "initLevelThree(): " + e.getMessage());
+            }
+
+            mDataStore.setJSONArrayInStorage("level_3_data", array);
+        }
+
+    private void initLevelFour(){
+        JSONArray array = new JSONArray();
+        try{
+            JSONObject enemy1 = new JSONObject();
+            enemy1.put("enemyType", "apple");
+            enemy1.put("spawnTime", 0);
+            enemy1.put("lane", 1);
+
+            }catch(Exception e){
+                Log.d("SwordBallad", "initLevelFour(): " + e.getMessage());
+            }
+
+            mDataStore.setJSONArrayInStorage("level_4_data", array);
+        }
+
+    private void initLevelFive(){
+        JSONArray array = new JSONArray();
+        try{
+            JSONObject enemy1 = new JSONObject();
+            enemy1.put("enemyType", "apple");
+            enemy1.put("spawnTime", 0);
+            enemy1.put("lane", 1);
+
+            }catch(Exception e){
+                Log.d("SwordBallad", "initLevelFive(): " + e.getMessage());
+            }
+
+            mDataStore.setJSONArrayInStorage("level_5_data", array);
+        }
 }

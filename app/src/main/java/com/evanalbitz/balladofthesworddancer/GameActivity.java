@@ -15,6 +15,7 @@ public class GameActivity extends AppCompatActivity {
 
     private GameView gameView;
     private DataStore mDataStore;
+    private int level;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +35,24 @@ public class GameActivity extends AppCompatActivity {
             deviceSize.y = display.getHeight();
         }
 
-        initLevelData();
+        level = 2;
+
+        switch(level){
+            case 1:
+                initLevelOne();
+                break;
+            case 2:
+                initLevelTwo();
+                break;
+            case 3:
+                initLevelFour();
+                break;
+            case 4:
+                initLevelFive();
+                break;
+            default:
+                initLevelData();
+        }
 
         gameView = new GameView(this, deviceSize.x, deviceSize.y);
 
@@ -142,9 +160,104 @@ public class GameActivity extends AppCompatActivity {
         JSONArray array = new JSONArray();
         try{
             JSONObject enemy1 = new JSONObject();
+            enemy1.put("enemyType", "bat");
+            enemy1.put("spawnTime", 100);
+            enemy1.put("lane", 2);
+
+            JSONObject enemy2 = new JSONObject();
             enemy1.put("enemyType", "apple");
-            enemy1.put("spawnTime", 0);
+            enemy1.put("spawnTime", 300);
+            enemy1.put("lane", 0);
+
+            JSONObject enemy3 = new JSONObject();
+            enemy1.put("enemyType", "apple");
+            enemy1.put("spawnTime", 300);
+            enemy1.put("lane", 3);
+
+            JSONObject enemy4 = new JSONObject();
+            enemy1.put("enemyType", "bat");
+            enemy1.put("spawnTime", 350);
             enemy1.put("lane", 1);
+
+            JSONObject enemy5 = new JSONObject();
+            enemy1.put("enemyType", "bat");
+            enemy1.put("spawnTime", 350);
+            enemy1.put("lane", 3);
+
+            JSONObject enemy6 = new JSONObject();
+            enemy1.put("enemyType", "apple");
+            enemy1.put("spawnTime", 500);
+            enemy1.put("lane", 0);
+
+            JSONObject enemy7 = new JSONObject();
+            enemy1.put("enemyType", "apple");
+            enemy1.put("spawnTime", 500);
+            enemy1.put("lane", 1);
+
+            JSONObject enemy8 = new JSONObject();
+            enemy1.put("enemyType", "apple");
+            enemy1.put("spawnTime", 500);
+            enemy1.put("lane", 2);
+
+            JSONObject enemy9 = new JSONObject();
+            enemy1.put("enemyType", "apple");
+            enemy1.put("spawnTime", 500);
+            enemy1.put("lane", 3);
+
+            JSONObject enemy10 = new JSONObject();
+            enemy1.put("enemyType", "bat");
+            enemy1.put("spawnTime", 550);
+            enemy1.put("lane", 2);
+
+            JSONObject enemy11 = new JSONObject();
+            enemy1.put("enemyType", "slime");
+            enemy1.put("spawnTime", 700);
+            enemy1.put("lane", 1);
+
+            JSONObject enemy12 = new JSONObject();
+            enemy1.put("enemyType", "slime");
+            enemy1.put("spawnTime", 800);
+            enemy1.put("lane", 1);
+
+            JSONObject enemy13 = new JSONObject();
+            enemy1.put("enemyType", "slime");
+            enemy1.put("spawnTime", 800);
+            enemy1.put("lane", 2);
+
+            JSONObject enemy14 = new JSONObject();
+            enemy1.put("enemyType", "bat");
+            enemy1.put("spawnTime", 900);
+            enemy1.put("lane", 1);
+
+            JSONObject enemy15 = new JSONObject();
+            enemy1.put("enemyType", "apple");
+            enemy1.put("spawnTime", 900);
+            enemy1.put("lane", 0);
+
+            JSONObject enemy16 = new JSONObject();
+            enemy1.put("enemyType", "apple");
+            enemy1.put("spawnTime", 900);
+            enemy1.put("lane", 3);
+
+            JSONObject enemy17 = new JSONObject();
+            enemy1.put("enemyType", "slime");
+            enemy1.put("spawnTime", 1000);
+            enemy1.put("lane", 0);
+
+            JSONObject enemy18 = new JSONObject();
+            enemy1.put("enemyType", "slime");
+            enemy1.put("spawnTime", 1000);
+            enemy1.put("lane", 1);
+
+            JSONObject enemy19 = new JSONObject();
+            enemy1.put("enemyType", "slime");
+            enemy1.put("spawnTime", 1000);
+            enemy1.put("lane", 2);
+
+            JSONObject enemy20 = new JSONObject();
+            enemy1.put("enemyType", "slime");
+            enemy1.put("spawnTime", 1000);
+            enemy1.put("lane", 3);
 
             }catch(Exception e){
                 Log.d("SwordBallad", "initLevelTwo(): " + e.getMessage());

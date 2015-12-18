@@ -19,7 +19,7 @@ public class Enemy{
 
     public int MAX_Y, MIN_Y;
 
-    public final int MAX_SPEED = 30;
+    public final int MAX_SPEED = 40;
 
     public final int MIN_SPEED = 10;
     public int speed;

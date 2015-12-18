@@ -17,7 +17,9 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.Random;
 
 /**
  * Created by Evan on 11/16/2015.
@@ -41,6 +43,7 @@ public class GameView extends SurfaceView implements Runnable {
 
     private int timer = 0;
     private int nextEnemySpawn = 0;
+    int totalEnemies = 0;
 
     private Paint paint;
     private Canvas canvas;
@@ -58,7 +61,7 @@ public class GameView extends SurfaceView implements Runnable {
 
     private GameState curGameState;
 
-    public GameView(Context context, int x, int y){
+    public GameView(Context context, int x, int y, int levelNumber){
         super(context);
         this.context = context;
 
@@ -83,7 +86,16 @@ public class GameView extends SurfaceView implements Runnable {
 
         mDataStore = DataStore.get(context);
 
-        mSpawnPattern = new EnemySpawnPattern("test_level", context);
+        // Pick a random level
+        // TODO: Make a level select screen
+        //--------------
+        Random rand = new Random();
+        int r = (rand.nextInt() % 5) + 1;
+        //--------------
+
+        mSpawnPattern = new EnemySpawnPattern("level_"+levelNumber+"_data", context);
+
+        totalEnemies = mSpawnPattern.getTotalEnemies();
 
         curGameState = GameState.START;
         startGame();
@@ -227,14 +239,22 @@ public class GameView extends SurfaceView implements Runnable {
 
             Enemy e = i.next();
 
+
             if(e.isOffScreen()){
                 i.remove();
+                totalEnemies--;
 
                 if(e.getAlive() && e.getType() != "spikeBall"){
                     damagePlayer();
                 }
             }
         }
+
+        //remove all empty elements
+        spawnedEnemies.trimToSize();
+
+        if(totalEnemies == 0 && waveDone)
+            curGameState = GameState.GAME_OVER;
     }
 
     private void damagePlayer(){

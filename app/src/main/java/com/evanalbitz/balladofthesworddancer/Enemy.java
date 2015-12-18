@@ -51,8 +51,7 @@ public class Enemy{
         //Move the enemy
         y += speed;
 
-        if(y > MAX_Y && alive){
-            Log.d("SwordBallad", "Missed enemy");
+        if(y > MAX_Y){
             offScreen = true;
         }
 

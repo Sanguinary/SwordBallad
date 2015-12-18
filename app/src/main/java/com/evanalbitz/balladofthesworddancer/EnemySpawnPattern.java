@@ -108,4 +108,8 @@ public class EnemySpawnPattern {
             return -1;
         }
     }
+
+    public int getTotalEnemies(){
+        return mNumberOfEnemies;
+    }
 }

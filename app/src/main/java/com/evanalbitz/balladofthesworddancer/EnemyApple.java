@@ -11,7 +11,7 @@ import java.util.Random;
  */
 public class EnemyApple extends Enemy {
 
-    public EnemyApple(Context context, int screenX, int screenY) {
+    public EnemyApple(Context context, int screenX, int screenY, int lane) {
         super(context, screenX, screenY);
 
         setImages(context);
@@ -20,7 +20,7 @@ public class EnemyApple extends Enemy {
 
         revive();
 
-        setLane();
+        setLane(lane);
     }
 
     public void setImages(Context context){

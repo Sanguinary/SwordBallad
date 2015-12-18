@@ -3,6 +3,7 @@ package com.evanalbitz.balladofthesworddancer;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -42,10 +43,8 @@ public class Enemy{
         //Move the enemy
         y += speed;
 
-        if(y > MAX_Y){
-            y = MIN_Y;
-            revive();
-            setLane();
+        if(y > MAX_Y && alive){
+            Log.d("SwordBallad", "Missed enemy");
         }
 
         //Move hitbox
@@ -55,10 +54,8 @@ public class Enemy{
         hitBox.bottom = y + currentImage.getHeight();
     }
 
-    public void setLane(){
+    public void setLane(int lane){
         //set the lane and the X position of the enemy
-        lane = rand.nextInt(MAXLANES);
-
         switch(lane){
             case 0:
                 x = 0;
@@ -87,7 +84,7 @@ public class Enemy{
     public void revive(){
         alive = true;
         currentImage = aliveImage;
-        speed = rand.nextInt(MAX_SPEED - MIN_SPEED) + MIN_SPEED;
+        speed = (MIN_SPEED + MAX_SPEED)/2;
     }
 
     public void scaleBitmap(int y){

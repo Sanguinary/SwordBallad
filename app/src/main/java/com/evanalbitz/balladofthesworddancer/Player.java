@@ -15,6 +15,8 @@ public class Player {
     private final int ATTACK_RIGHT = 2;
     private final int ATTACK_LEFT = 3;
     private int state;
+    private final int TIME_MAX = 10;
+    private int currentTime;
 
     private int startX, startY, x, y, screenX, screenY;
 
@@ -25,6 +27,7 @@ public class Player {
         this.screenY = screenY;
 
         state = IDLE;
+        currentTime = 0;
 
         idleImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.playeridle);
         attackUpImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.playerattackup);
@@ -33,23 +36,37 @@ public class Player {
 
         currentImage = idleImage;
 
-        startX = x = (screenX / 2) - idleImage.getWidth() / 4;
-        startY = y = screenY - idleImage.getHeight() - (screenY / 20);
+        startX = x = (screenX / 2) - idleImage.getWidth() / 3;
+        startY = y = screenY - idleImage.getHeight() - (screenY / 5);
     }
 
     public void idle(){
-        currentImage = idleImage;
-        x = startX;
+        //change image if the timer is up
+        if(currentTime <= 0)
+        {
+            currentImage = idleImage;
+            x = startX;
+        }
     }
 
     public void attackRight(){
         currentImage = attackRightImage;
-        x = startX;
+        x = startX - currentImage.getWidth() / 3;
+        resetTimer();
     }
 
     public void attackLeft(){
         currentImage = attackLeftImage;
-        x = startX - currentImage.getWidth() / 2;
+        x = startX - currentImage.getWidth() / 3;
+        resetTimer();
+    }
+
+    public void resetTimer(){
+        currentTime = TIME_MAX;
+    }
+
+    public void countDown(){
+        currentTime--;
     }
 
     //Getters

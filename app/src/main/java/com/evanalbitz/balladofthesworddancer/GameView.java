@@ -128,6 +128,10 @@ public class GameView extends SurfaceView implements Runnable {
         }
 
         timer++;
+
+        //countdown the player timer and reset character
+        player.countDown();
+        player.idle();
     }
 
     private void draw(){

@@ -9,7 +9,7 @@ import android.graphics.BitmapFactory;
  */
 public class Player {
     private Bitmap currentImage;
-    private Bitmap idleImage, attackUpImage, attackRightImage, attackLeftImage;
+    private Bitmap idleImage, attackUpImage, attackRightImage, attackLeftImage, damagedImage;
     private final int IDLE = 0;
     private final int ATTTACK_UP = 1;
     private final int ATTACK_RIGHT = 2;
@@ -33,6 +33,7 @@ public class Player {
         attackUpImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.playerattackup);
         attackRightImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.playerattackright);
         attackLeftImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.playerattackleft);
+        damagedImage = BitmapFactory.decodeResource(context.getResources(), R.drawable.player_damaged);
 
         currentImage = idleImage;
 
@@ -57,6 +58,12 @@ public class Player {
 
     public void attackLeft(){
         currentImage = attackLeftImage;
+        x = startX - currentImage.getWidth() / 3;
+        resetTimer();
+    }
+
+    public void damaged(){
+        currentImage = damagedImage;
         x = startX - currentImage.getWidth() / 3;
         resetTimer();
     }
